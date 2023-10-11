@@ -39,6 +39,7 @@ public class Session
             if ("chrome".equalsIgnoreCase(Config.WEB_BROWSER.value)) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
+                options.setCapability("browserVersion", "116.0.5845.111");
                 options.addArguments("wm-window-animations-disabled");
                 options.addArguments("ash-disable-smooth-screen-rotation");
                 options.addArguments("disable-smooth-scrolling");
