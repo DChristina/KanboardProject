@@ -10,16 +10,7 @@ pipeline {
             steps {
                 sh "mvn clean test -Dsuite=DefaultSuite.xml"
                 }
-             post {
-                 success { allure([
-                     includeProperties: false,
-                     jdk: '',
-                     properties: [],
-                     reportBuildPolicy: 'ALWAYS',
-                     results: [[path: 'target/allure-results']]
-                      ])
-                 }
-             }
+
         }
     }
 }
