@@ -56,20 +56,20 @@ public class Project {
     public  Project(){
         super();
     }
-    @Step("Creating of project projectName:{}")
+    @Step("Creating of project projectName")
     public JsonObject createProject(String projectName){
         Map<String, Object> params = new HashMap<>(  );
         params.put("name",projectName);
         return KanboardJSONRPC.baseRequest("createProject",params) ;
     }
-    @Step("Getting data about the project projectId:{} ")
+    @Step("Getting data about the project projectId")
     public JsonObject getProject(String projectId){
         Map<String, Object> params = new HashMap<>(  );
         params.put("project_id",projectId);
         return KanboardJSONRPC.baseRequest("getProjectById",params) ;
     }
 
-    @Step("Deleting of the project projectId:{}")
+    @Step("Deleting of the project projectId")
     public JsonObject deletingProject(String projectId){
         Map<String, Object> params = new HashMap<>(  );
         params.put("project_id",projectId);
