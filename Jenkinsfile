@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                bat "mvn clean test -Dsuite=DefaultSuite.xml"
+                sh "mvn clean test -Dsuite=DefaultSuite.xml"
                 }
              post {
                  success { allure([
