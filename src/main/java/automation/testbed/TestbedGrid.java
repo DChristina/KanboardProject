@@ -2,6 +2,7 @@ package automation.testbed;
 
 import automation.Config;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,6 +27,7 @@ public class TestbedGrid extends BaseTestbed {
             gridPort = Config.SELENIUM_GRID_CHROME_PORT.value;
             caps.setCapability(ChromeOptions.CAPABILITY,this.getCommonChromeOptions());
             caps.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);
+            caps.setPlatform(Platform.WIN10);
         } else if("firefox".equalsIgnoreCase(Config.WEB_BROWSER.value)){
             gridHost = Config.SELENIUM_GRID_FIREFOX_HOST.value;
             gridPort = Config.SELENIUM_GRID_FIREFOX_PORT.value;

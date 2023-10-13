@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   kanboard:
     image: kanboard/kanboard:latest
@@ -36,6 +36,24 @@ services:
       - 8.8.4.4
     ports:
       - 8080:8080
+
+  selenium-chrome:
+      image: "selenium/standalone-chrome:117.0-chromedriver-117.0"
+      container_name: "selenium-chrome"
+      ports:
+        - 4444:4444
+        - 7900:7900
+      networks:
+        - default
+
+  selenium-firefox:
+        image: "selenium/standalone-firefox:latest"
+        container_name: "selenium-firefox"
+        ports:
+          - 4445:4445
+          - 7901:7901
+        networks:
+          - default
 
 volumes:
   kanboard_data:
