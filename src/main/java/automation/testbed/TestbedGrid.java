@@ -27,7 +27,8 @@ public class TestbedGrid extends BaseTestbed {
             gridPort = Config.SELENIUM_GRID_CHROME_PORT.value;
             caps.setCapability(ChromeOptions.CAPABILITY,this.getCommonChromeOptions());
             caps.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);
-            caps.setPlatform(Platform.WIN10);
+            caps.setCapability(CapabilityType.BROWSER_VERSION, "117.0");
+            caps.setPlatform(Platform.LINUX);
         } else if("firefox".equalsIgnoreCase(Config.WEB_BROWSER.value)){
             gridHost = Config.SELENIUM_GRID_FIREFOX_HOST.value;
             gridPort = Config.SELENIUM_GRID_FIREFOX_PORT.value;
