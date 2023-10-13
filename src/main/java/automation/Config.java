@@ -25,14 +25,25 @@ public class Config
     static final public Param MYSQL_USERNAME    = new Param("mysql.username",       null,        true);
     static final public Param MYSQL_PASSWORD    = new Param("mysql.password",       null,        true);
 
+    static final public Param TESTBED           = new Param("testbed",              "local",       true);
+
     static final public Param WEB_BROWSER           = new Param("web.browser",   "chrome",       true);
     static final public Param WEB_BROWSER_NO_GUI    = new Param("web.browser.no.gui",   "false", true);
-
+    static final public Param BROWSER_WIN_WIDTH     = new Param("web.browser.win.width",   "1024", true);
+    static final public Param BROWSER_WIN_HEIGHT    = new Param("web.browser.win.height",  "786",  true);
     static final public Param API_BASE_PROTO           = new Param("api.base.protocol", "http",true);
     static final public Param API_BASE_HOST           = new Param("api.base.host", "localhost",true);
     static final public Param API_BASE_PORT           = new Param("api.base.port","80",true);
     static final public Param API_BASE_NAME           = new Param("api.user.name",null,true);
     static final public Param API_BASE_PASSWORD           = new Param("api.user.password",null,true);
+
+
+    static final public Param SELENIUM_GRID_CHROME_HOST = new Param("selenium.grid.chrome.host",    null, true);
+    static final public Param SELENIUM_GRID_CHROME_PORT = new Param("selenium.grid.chrome.port",    null, true);
+
+    static final public Param SELENIUM_GRID_FIREFOX_HOST = new Param("selenium.grid.firefox.host",    null, true);
+    static final public Param SELENIUM_GRID_FIREFOX_PORT = new Param("selenium.grid.firefox.port",    null, true);
+
 
     static {
         InitErrors.showErrors();
