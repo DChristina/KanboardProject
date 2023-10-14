@@ -36,6 +36,8 @@ services:
       - 8.8.4.4
     ports:
       - 8080:8080
+    networks:
+      - default
 
   selenium-chrome:
       image: "selenium/standalone-chrome:117.0-chromedriver-117.0"
