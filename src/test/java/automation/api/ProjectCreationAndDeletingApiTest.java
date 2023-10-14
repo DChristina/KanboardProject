@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @Feature("Verify CRUID Operations on User module")
 public class ProjectCreationAndDeletingApiTest extends BaseKanboardTest {
 
-    @Test
+    @Test (groups={"smoke", "regression"})
     public void creationAndDeletingProjectTest(){
         //creation of the project
         String projectData = jsonRpcPayload.project.createProject("Autotest project").toString();

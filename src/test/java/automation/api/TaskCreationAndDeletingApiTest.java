@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class TaskCreationAndDeletingApiTest extends BaseKanboardTest {
 
-    @Test
+    @Test (groups={"smoke", "regression"})
     public void creationAndDeletingTaskTest() {
         //creation of the project
         String projectData = jsonRpcPayload.project.createProject("Autotest project").toString( );

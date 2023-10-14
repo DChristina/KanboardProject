@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseGUITest {
 
-    @Test
+    @Test(groups={"smoke", "regression"})
     public void sucsesfullAuthorizationTest(){
         IndexPage page = new IndexPage();
         page.setUserName("admin");

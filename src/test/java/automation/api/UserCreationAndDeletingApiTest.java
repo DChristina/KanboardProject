@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class UserCreationAndDeletingApiTest extends BaseKanboardTest {
 
-    @Test
+    @Test(groups={"smoke", "regression"})
     public void createAndDeleteUserTest()  {
         //creation of the user
         String userData = jsonRpcPayload.user.createUser("testUser39","password").toString();
