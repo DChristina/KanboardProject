@@ -22,6 +22,7 @@ public class TestbedGrid extends BaseTestbed {
         String gridHost;
         String gridPort;
         DesiredCapabilities caps = new DesiredCapabilities();
+        /*RemoteWebDriver driver = new RemoteWebDriver(testGridUrl, capabilities, false);*/
         if ("chrome".equalsIgnoreCase(Config.WEB_BROWSER.value)) {
             gridHost = Config.SELENIUM_GRID_CHROME_HOST.value;
             gridPort = Config.SELENIUM_GRID_CHROME_PORT.value;
@@ -43,7 +44,7 @@ public class TestbedGrid extends BaseTestbed {
         String gridURL  = "http://"+ gridHost+":"+ gridPort+ "/wd/hub";
         try{
             URL url = new URL(gridURL);
-            return new RemoteWebDriver(url,caps);
+            return new RemoteWebDriver(url,caps,false);
         } catch (MalformedURLException e){
             throw new RuntimeException( "Url is not valid:" + gridURL+ e );
         }
