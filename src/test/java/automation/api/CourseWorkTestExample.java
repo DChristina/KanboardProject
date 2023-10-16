@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class CourseWorkTestExample extends BaseKanboardTest {
 
-    @Test (groups={"smoke", "regression"})
+    @Test
     public void testCreateCategory(){
 
         String payload = jsonRpcPayload.category.createCategory("Test", 1).toString();

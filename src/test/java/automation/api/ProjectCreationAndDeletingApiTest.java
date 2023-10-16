@@ -4,17 +4,19 @@ import automation.api.kanboard.*;
 import automation.base.BaseKanboardTest;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Epic("REST API Regression Testing using TestNG")
-@Feature("Verify CRUID Operations on User module")
+
 public class ProjectCreationAndDeletingApiTest extends BaseKanboardTest {
 
     @Test (groups={"smoke", "regression"})
+    @Step("creation of the project,checking that project was created by getting its data, " +
+            "deleting  the project, checking that project was deleted by getting its data")
     public void creationAndDeletingProjectTest(){
         //creation of the project
         String projectData = jsonRpcPayload.project.createProject("Autotest project").toString();

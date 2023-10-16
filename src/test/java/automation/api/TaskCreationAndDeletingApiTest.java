@@ -2,6 +2,7 @@ package automation.api;
 
 import automation.api.kanboard.*;
 import automation.base.BaseKanboardTest;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;

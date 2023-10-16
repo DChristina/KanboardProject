@@ -1,15 +1,18 @@
 package automation.api.kanboard;
 
 import automation.api.KanboardJSONRPC;
+import automation.base.BaseKanboardTest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.JsonObject;
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.http.ContentType;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @JsonIgnoreProperties({"is_active","token","owner_id","email","enable_global_tags","task_limit","per_swimlane_task_limits","per_swimlane_task_limits","predefined_email_subjects","priority_start","priority_end","priority_default","last_modified","start_date","end_date","is_public","is_private","default_swimlane","show_default_swimlane","description","identifier","url"})
-public class Project {
+public class Project  {
     public String id;
     public String name;
     public String is_active;
@@ -62,6 +65,7 @@ public class Project {
         params.put("name",projectName);
         return KanboardJSONRPC.baseRequest("createProject",params) ;
     }
+
     @Step("Getting data about the project projectId")
     public JsonObject getProject(String projectId){
         Map<String, Object> params = new HashMap<>(  );

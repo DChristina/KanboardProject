@@ -1,13 +1,20 @@
 package automation.api.kanboard;
 
 import automation.api.KanboardJSONRPC;
+import automation.base.BaseKanboardTest;
+import automation.website.DashboardPage;
+import automation.website.IndexPage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.JsonObject;
+import io.restassured.http.ContentType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@JsonIgnoreProperties({"role","is_ldap_user","name","email","google_id","github_id","filter","token","theme","api_access_token","avatar_path","is_active","gitlab_id","lock_expiration_date","notifications_enabled","nb_failed_login","notifications_filter","timezone","language","disable_login_form","twofactor_activated","twofactor_secret",})
+@JsonIgnoreProperties({"is_ldap_user","name","email","google_id","github_id",
+        "filter","token","theme","api_access_token","avatar_path","is_active","gitlab_id",
+        "lock_expiration_date","notifications_enabled","nb_failed_login","notifications_filter",
+        "timezone","language","disable_login_form","twofactor_activated","twofactor_secret",})
 public class User {
     private String id;
     private String username;
@@ -45,10 +52,11 @@ public class User {
         super();
     }
 
-    public JsonObject createUser(String username,String password){
+    public JsonObject createUser(String username,String password, String role){
         Map<String, Object> params = new HashMap<>(  );
         params.put("username",username);
         params.put("password",password);
+        params.put("role", role);
         return KanboardJSONRPC.baseRequest("createUser",params) ;
     }
 
@@ -62,6 +70,20 @@ public class User {
         params.put("user_id",user_id);
         return KanboardJSONRPC.baseRequest("removeUser",params) ;
     }
+    public JsonObject linkUserAndProject( Integer project_id, Integer user_id, String role){
+        Map<String, Object> params = new HashMap<>(  );
+        params.put("user_id",user_id);
+        params.put("project_id",project_id);
+        params.put("role",role);
+        return KanboardJSONRPC.baseRequest("addProjectUser",params) ;
+    }
+    public void  LoginUser (String name, String password){
+        IndexPage indexPage = new IndexPage();
+        indexPage.setUserName(name);
+        indexPage.setPassword("password");
+        indexPage.pressSignInButton();
+    }
+
     public String getId() {
         return id;
     }

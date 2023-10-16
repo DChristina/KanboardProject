@@ -14,7 +14,7 @@ public class UserCreationAndDeletingApiTest extends BaseKanboardTest {
     @Test(groups={"smoke", "regression"})
     public void createAndDeleteUserTest()  {
         //creation of the user
-        String userData = jsonRpcPayload.user.createUser("testUser39","password").toString();
+        String userData = jsonRpcPayload.user.createUser("testUser39","password","app-admin").toString();
         UserCreationResponse userCreationResponse = this.request()
                 .contentType(ContentType.JSON)
                 .body(userData)

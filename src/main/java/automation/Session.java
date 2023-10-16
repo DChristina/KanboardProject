@@ -4,14 +4,8 @@ import automation.testbed.BaseTestbed;
 import automation.testbed.TestbedGrid;
 import automation.testbed.TestbedLocal;
 import automation.utils.MySQLDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Session
 {
