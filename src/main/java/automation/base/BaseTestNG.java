@@ -6,21 +6,25 @@ import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 
 public class BaseTestNG
 {
     final protected Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(Method method, Object[] testArgs) {
+    public void beforeTestNGMethod(Method method, Object[] testArgs) {
         logger.debug("---------------------------------------------------------------------------");
         logger.debug("-- Run test: " + method.getAnnotation(Test.class).testName());
         logger.debug("---------------------------------------------------------------------------");
@@ -32,11 +36,27 @@ public class BaseTestNG
     }
 
     @AfterMethod(alwaysRun = true)
-    public void afterMethod(Method method) {
+    public void afterTestNGMethod(Method method) {
         logger.debug("---------------------------------------------------------------------------");
         logger.debug("-- End test: " + method.getAnnotation(Test.class).testName());
         logger.debug("---------------------------------------------------------------------------");
         this.attachResourceFile("env/" + Config.getEnvironmentName() + ".properties");
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuiteTestNG() {
+        String           envFilePath = Config.ALLURE_RESULTS.value + "/environment.properties";
+        try {
+            Properties props = new Properties();
+            FileOutputStream fos   = new FileOutputStream(envFilePath);
+            for(Config.Param param : Config.list()) {
+                props.put(param.name, param.value);
+            }
+            props.store(fos, "Config properties");
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Could not write resource properties file " + envFilePath);
+        }
     }
 
     @Attachment("Resource file: {resourceFilePath}")
@@ -51,5 +71,9 @@ public class BaseTestNG
         }
 
     }
+
+
+
+
 }
 

@@ -1,12 +1,9 @@
 package automation.testbed;
 
 import automation.Config;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,21 +19,18 @@ public class TestbedGrid extends BaseTestbed {
         String gridHost;
         String gridPort;
         DesiredCapabilities caps = new DesiredCapabilities();
-        /*RemoteWebDriver driver = new RemoteWebDriver(testGridUrl, capabilities, false);*/
+
         if ("chrome".equalsIgnoreCase(Config.WEB_BROWSER.value)) {
             gridHost = Config.SELENIUM_GRID_CHROME_HOST.value;
             gridPort = Config.SELENIUM_GRID_CHROME_PORT.value;
             caps.setCapability(ChromeOptions.CAPABILITY,this.getCommonChromeOptions());
-            caps.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);
-            caps.setCapability(CapabilityType.TIMEOUTS,30);
-            caps.setCapability("se:vncEnabled",true);
-            caps.setCapability(CapabilityType.BROWSER_VERSION, "117.0");
+            caps.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME.browserName());
             caps.setPlatform(Platform.LINUX);
         } else if("firefox".equalsIgnoreCase(Config.WEB_BROWSER.value)){
             gridHost = Config.SELENIUM_GRID_FIREFOX_HOST.value;
             gridPort = Config.SELENIUM_GRID_FIREFOX_PORT.value;
             caps.setCapability(ChromeOptions.CAPABILITY,this.getCommonFirefoxOptions());
-            caps.setCapability(CapabilityType.BROWSER_NAME, Browser.FIREFOX);
+            caps.setCapability(CapabilityType.BROWSER_NAME, Browser.FIREFOX.browserName());
 
         } else {
             throw new RuntimeException( "Unsupported browser" + Config.WEB_BROWSER.value );

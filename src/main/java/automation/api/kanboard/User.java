@@ -6,6 +6,7 @@ import automation.website.DashboardPage;
 import automation.website.IndexPage;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class User {
         super();
     }
 
+    @Step("Usage a template for body requests during the user creation process.")
     public JsonObject createUser(String username,String password, String role){
         Map<String, Object> params = new HashMap<>(  );
         params.put("username",username);
@@ -60,16 +62,21 @@ public class User {
         return KanboardJSONRPC.baseRequest("createUser",params) ;
     }
 
+    @Step("Usage a template for body requests during the user getting process.")
     public JsonObject getUser( Integer user_id){
         Map<String, Object> params = new HashMap<>(  );
         params.put("user_id",user_id);
         return KanboardJSONRPC.baseRequest("getUser",params) ;
     }
+
+    @Step("Usage a template for body requests during the user deleting process.")
     public JsonObject deleteUser( Integer user_id){
         Map<String, Object> params = new HashMap<>(  );
         params.put("user_id",user_id);
         return KanboardJSONRPC.baseRequest("removeUser",params) ;
     }
+
+    @Step("Usage a template for body requests during the linking task and project  process.")
     public JsonObject linkUserAndProject( Integer project_id, Integer user_id, String role){
         Map<String, Object> params = new HashMap<>(  );
         params.put("user_id",user_id);
@@ -77,10 +84,11 @@ public class User {
         params.put("role",role);
         return KanboardJSONRPC.baseRequest("addProjectUser",params) ;
     }
+    @Step("LogIn app")
     public void  LoginUser (String name, String password){
         IndexPage indexPage = new IndexPage();
         indexPage.setUserName(name);
-        indexPage.setPassword("password");
+        indexPage.setPassword(password);
         indexPage.pressSignInButton();
     }
 

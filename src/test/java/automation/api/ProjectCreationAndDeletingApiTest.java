@@ -14,7 +14,8 @@ import org.testng.annotations.Test;
 
 public class ProjectCreationAndDeletingApiTest extends BaseKanboardTest {
 
-    @Test (groups={"smoke", "regression"})
+    @Test (groups={"smoke", "regression","apiTest"}, description = "Api test Creation of the project")
+
     @Step("creation of the project,checking that project was created by getting its data, " +
             "deleting  the project, checking that project was deleted by getting its data")
     public void creationAndDeletingProjectTest(){

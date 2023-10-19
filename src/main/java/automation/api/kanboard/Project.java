@@ -11,7 +11,10 @@ import io.restassured.http.ContentType;
 import java.util.HashMap;
 import java.util.Map;
 
-@JsonIgnoreProperties({"is_active","token","owner_id","email","enable_global_tags","task_limit","per_swimlane_task_limits","per_swimlane_task_limits","predefined_email_subjects","priority_start","priority_end","priority_default","last_modified","start_date","end_date","is_public","is_private","default_swimlane","show_default_swimlane","description","identifier","url"})
+@JsonIgnoreProperties({"is_active","token","owner_id","email","enable_global_tags","task_limit",
+        "per_swimlane_task_limits","per_swimlane_task_limits","predefined_email_subjects","priority_start",
+        "priority_end","priority_default","last_modified","start_date","end_date","is_public","is_private",
+        "default_swimlane","show_default_swimlane","description","identifier","url"})
 public class Project  {
     public String id;
     public String name;
@@ -59,7 +62,7 @@ public class Project  {
     public  Project(){
         super();
     }
-    @Step("Creating of project projectName")
+    @Step("Usage a template for body requests during the project creation process.")
     public JsonObject createProject(String projectName){
         Map<String, Object> params = new HashMap<>(  );
         params.put("name",projectName);

@@ -2,11 +2,13 @@ package automation.api.kanboard;
 
 import automation.base.BaseKanboardTest;
 import io.opentelemetry.api.trace.StatusCode;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 
 
 public class UserApiActions extends BaseKanboardTest {
 
+    @Step("Api request for creation of the user")
     public int createUserApiProcess(String name, String password, String role) {
 
         String userData = jsonRpcPayload.user.createUser(name, password, role).toString( );
@@ -19,7 +21,7 @@ public class UserApiActions extends BaseKanboardTest {
         return Integer.parseInt(userCreationResponse.getResult( ));
     }
 
-
+    @Step("Api request for getting of the user")
     public User getUserApiProcess (Integer user_id){
         String payloadCreatedUser = jsonRpcPayload.user.getUser(user_id).toString();
         User gottenUser =  this.request()
@@ -31,6 +33,7 @@ public class UserApiActions extends BaseKanboardTest {
         return gottenUser;
     }
 
+    @Step("Api request for deleting of the user")
     public Boolean  deleteUserApiProcess (Integer user_id){
         String payloadDeletingdUser = jsonRpcPayload.user.deleteUser(user_id).toString();
         UserDeletingResponse deletedUser = this.request()
@@ -42,7 +45,8 @@ public class UserApiActions extends BaseKanboardTest {
         return deletedUser.getResult();
     }
 
-    public void  linkUserAbdProjecrApiProcess (Integer project_id, Integer user_id,  String role) {
+    @Step("Api request for linking user and project")
+    public void  linkUserAndProjectApiProcess (Integer project_id, Integer user_id,  String role) {
         String linkUserProject = jsonRpcPayload.user.linkUserAndProject(project_id, user_id, role).toString( );
         String response = this.request( )
                 .contentType(ContentType.JSON)

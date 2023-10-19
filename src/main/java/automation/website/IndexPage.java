@@ -2,7 +2,7 @@ package automation.website;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Alert;
+
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -14,7 +14,6 @@ public class IndexPage {
     private SelenideElement forgotPasswordLink = $x("//div[@class=\"reset-password\"]/a");
     private SelenideElement errorAlert = $x("//div[@class=\"form-login\"]/p");
 
-    //Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
     @Step("Set username")
     public void setUserName(String name){

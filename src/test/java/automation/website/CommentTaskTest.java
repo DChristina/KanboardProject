@@ -5,9 +5,7 @@ import automation.api.kanboard.TaskApiActions;
 import automation.api.kanboard.UserApiActions;
 import automation.base.BaseGUITest;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class CommentTaskTest extends BaseGUITest  {
 
@@ -23,15 +21,15 @@ public class CommentTaskTest extends BaseGUITest  {
         ProjectApiActions projectApiActions = new ProjectApiActions( );
         TaskApiActions taskApiActions = new TaskApiActions( );
 
-        @BeforeTest
+        @BeforeMethod(alwaysRun = true)
         public void beforeCommentTask() {
             user_id = userApiActions.createUserApiProcess(name, password, role);
             project_id = projectApiActions.createProjectFullProcess("Autotest new Project");
-            userApiActions.linkUserAbdProjecrApiProcess(project_id, user_id, "project-manager");
+            userApiActions.linkUserAndProjectApiProcess(project_id, user_id, "project-manager");
             taskApiActions.createTaskApiProcess(taskTitle, project_id);
         }
 
-        @Test(groups={"smoke", "regression"})
+        @Test(groups={"smoke", "regression","UITest"},description = "UI test for commenting task process")
         public void commentTask(){
             IndexPage indexPage = new IndexPage();
             DashboardPage dashboardPage  = new DashboardPage();
@@ -47,7 +45,7 @@ public class CommentTaskTest extends BaseGUITest  {
 
         }
 
-        @AfterTest
+        @AfterMethod(alwaysRun = true)
         public void afterCommentTask(){
             userApiActions.deleteUserApiProcess(user_id);
             projectApiActions.deleteProjectFullProcess(project_id);

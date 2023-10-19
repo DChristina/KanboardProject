@@ -2,6 +2,7 @@ package automation.website;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -19,11 +20,14 @@ public class TaskPage {
     public SelenideElement addedLastComment = $x("//div[@class=\"comment \"]");
     public SelenideElement lastCommentTaxt = $x("//div[@class=\"comment \"]//p[1]");
 
+    @Step("Adding comment in pop-up form")
     public void addCommentInPopUp(String comment){
         addCommentLink.click();
         textareaCommentPopUp.setValue(comment);
         saveButtonCommentPopUp.click();
     }
+
+    @Step("Closing task process")
     public void closeTask(){
         closeTaskLink.click();
         confirmationPopUP.shouldBe(Condition.visible);

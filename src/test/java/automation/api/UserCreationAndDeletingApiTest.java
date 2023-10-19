@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class UserCreationAndDeletingApiTest extends BaseKanboardTest {
 
-    @Test(groups={"smoke", "regression"})
+    @Test(groups={"smoke", "regression","apiTest"},description = "Api test Creation of the user")
     public void createAndDeleteUserTest()  {
         //creation of the user
         String userData = jsonRpcPayload.user.createUser("testUser39","password","app-admin").toString();
@@ -23,7 +23,7 @@ public class UserCreationAndDeletingApiTest extends BaseKanboardTest {
                 .extract().as(UserCreationResponse.class);
         Assert.assertEquals(userCreationResponse.getJsonrpc(),"2.0");
         Assert.assertTrue(Integer.parseInt(userCreationResponse.getResult())>0);
-       // Assert.assertEquals(userCreationResponse.getId(),1);
+
 
         //checking that user was created by getting its data
        String payloadCreatedUser = jsonRpcPayload.user.getUser(Integer.parseInt(userCreationResponse.getResult())).toString();

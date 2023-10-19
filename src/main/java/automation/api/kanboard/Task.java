@@ -3,6 +3,7 @@ package automation.api.kanboard;
 import automation.api.KanboardJSONRPC;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Step;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,7 +71,7 @@ public class Task {
         super();
     }
 
-
+    @Step("Usage a template for body requests during the task creation process.")
     public JsonObject createTask(String taskTitle, Integer project_id){
         Map<String, Object> params = new HashMap<>(  );
         params.put("title",taskTitle);
@@ -78,11 +79,14 @@ public class Task {
         return KanboardJSONRPC.baseRequest("createTask",params) ;
     }
 
+    @Step("Usage a template for body requests during the task getting process.")
     public JsonObject getTask(String taskId){
         Map<String, Object> params = new HashMap<>(  );
         params.put("task_id",taskId);
         return KanboardJSONRPC.baseRequest("getTask",params) ;
     }
+
+    @Step("Usage a template for body requests during the task deleting process.")
     public JsonObject deleteTask(String taskId){
         Map<String, Object> params = new HashMap<>(  );
         params.put("task_id",taskId);

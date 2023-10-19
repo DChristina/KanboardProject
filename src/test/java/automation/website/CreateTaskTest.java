@@ -6,9 +6,7 @@ import automation.api.kanboard.UserApiActions;
 import automation.base.BaseGUITest;
 import com.codeborne.selenide.Condition;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Locale;
 
@@ -24,16 +22,16 @@ public class CreateTaskTest extends BaseGUITest {
     UserApiActions userApiActions = new UserApiActions();
     ProjectApiActions projectApiActions = new ProjectApiActions();
 
-    @BeforeTest
+    @BeforeMethod(alwaysRun = true)
     public void beforeCreateTaskTest(){
 
         user_id =  userApiActions.createUserApiProcess(name,password,role);
         project_id = projectApiActions.createProjectFullProcess("Autotest new Project");
-        userApiActions.linkUserAbdProjecrApiProcess(project_id, user_id, "project-manager");
+        userApiActions.linkUserAndProjectApiProcess(project_id, user_id, "project-manager");
 
     }
 
-    @Test(groups={"smoke", "regression"})
+    @Test(groups={"smoke", "regression","UITest"},description = "UI test for the creating project process")
     public void CreateTaskTest(){
       IndexPage indexPage = new IndexPage();
       DashboardPage dashboardPage  = new DashboardPage();
@@ -56,7 +54,7 @@ public class CreateTaskTest extends BaseGUITest {
 
     }
 
-    @AfterTest
+    @AfterMethod(alwaysRun = true)
     public void afterCreateTaskTest(){
         userApiActions.deleteUserApiProcess(user_id);
         projectApiActions.deleteProjectFullProcess(project_id);

@@ -69,6 +69,12 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
@@ -149,7 +155,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>./src/main/java/Maim</mainClass>
+                            <mainClass>./src/main/java/Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -162,6 +168,18 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>./src/test/resources/DefaultSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <groups>
+                        apiTest
+                    </groups>
+                    <groups>
+                        UITest
+                    </groups>
+                    <groups>
+                        regression
+                    </groups>
+                    <groups>
+                        smoke
+                    </groups>
                     <reuseForks>false</reuseForks>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
