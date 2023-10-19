@@ -22,7 +22,7 @@ properties([
                 ),
                 choice(
                         name: 'groups',
-                        choices: ['smoke','regression'],
+                        choices: ['smoke','regression','apiTest','UITest'],
                         description: ''
                 ),
                 choice(
